@@ -1,8 +1,13 @@
 @import "tailwindcss";
 
+:root {
+    color-scheme: light dark;
+}
+
 @theme {
-    --color-background: #0E1113;
-    --color-border: #3E4142;
-    --color-btn-hover: #333D42;
-    --color-btn-active: #515A5E;
+    --color-text: light-dark(#000000, #FFFFFF);
+    --color-background: light-dark(#FFFFFF, #0E1113);
+    --color-border: light-dark(#CCCCCC, #3E4142);
+    --color-btn-hover: light-dark(#DBE4E9, #333D42);
+    --color-btn-active: light-dark(#BAC2C6, #515A5E);
 }
