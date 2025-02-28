@@ -3,4 +3,6 @@
 @theme {
     --color-background: #0E1113;
     --color-border: #3E4142;
+    --color-btn-hover: #333D42;
+    --color-btn-active: #515A5E;
 }
