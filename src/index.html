@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <title>Reddit</title>
     <meta charset="UTF-8">
@@ -7,13 +8,180 @@
     <link rel="stylesheet" href="/global.css">
     <script type="module" src="/ts/header.ts" defer></script>
 </head>
+
 <body class="flex flex-col h-screen text-text bg-background">
     <!-- Header -->
     <header class="flex items-center gap-2 p-2 border-b bg-background border-border">
-        <button class="p-1 rounded-full cursor-pointer active:bg-btn-active hover:bg-btn-hover size-8" type="button" id="hide-sidebar-button">
-            <svg class="size-full" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-menu"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
+        <button class="p-1 rounded-full cursor-pointer active:bg-btn-active hover:bg-btn-hover size-8" type="button"
+            id="hide-sidebar-button">
+            <svg class="size-full" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+                class="lucide lucide-menu">
+                <line x1="4" x2="20" y1="12" y2="12" />
+                <line x1="4" x2="20" y1="6" y2="6" />
+                <line x1="4" x2="20" y1="18" y2="18" />
+            </svg>
         </button>
-        <a id="reddit-logo" class="space-x-1.5" href="/"><svg class="inline-block" width="32" height="32" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 216 216" xml:space="preserve" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><style>.snoo-cls-1, .snoo-cls-2, .snoo-cls-3, .snoo-cls-4, .snoo-cls-5, .snoo-cls-6, .snoo-cls-7, .snoo-cls-8, .snoo-cls-9, .snoo-cls-10, .snoo-cls-11 { stroke-width: 0px; }.snoo-cls-1 { fill: url(#snoo-radial-gragient) white; }.snoo-cls-2 { fill: url(#snoo-radial-gragient-2) white; }.snoo-cls-3 { fill: url(#snoo-radial-gragient-3) white; }.snoo-cls-4 { fill: url(#snoo-radial-gragient-4) #fc4301; }.snoo-cls-5 { fill: url(#snoo-radial-gragient-6) black; }.snoo-cls-6 { fill: url(#snoo-radial-gragient-8) black; }.snoo-cls-7 { fill: url(#snoo-radial-gragient-5) #fc4301; }.snoo-cls-8 { fill: url(#snoo-radial-gragient-7) white; }.snoo-cls-9 { fill: #842123; }.snoo-cls-10 { fill: #ff4500; }.snoo-cls-11 { fill: #ffc49c; }</style><radialGradient id="snoo-radial-gragient" cx="169.75" cy="92.19" fx="169.75" fy="92.19" r="50.98" gradientTransform="translate(0 11.64) scale(1 .87)" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#feffff"></stop><stop offset=".4" stop-color="#feffff"></stop><stop offset=".51" stop-color="#f9fcfc"></stop><stop offset=".62" stop-color="#edf3f5"></stop><stop offset=".7" stop-color="#dee9ec"></stop><stop offset=".72" stop-color="#d8e4e8"></stop><stop offset=".76" stop-color="#ccd8df"></stop><stop offset=".8" stop-color="#c8d5dd"></stop><stop offset=".83" stop-color="#ccd6de"></stop><stop offset=".85" stop-color="#d8dbe2"></stop><stop offset=".88" stop-color="#ede3e9"></stop><stop offset=".9" stop-color="#ffebef"></stop></radialGradient><radialGradient id="snoo-radial-gragient-2" cx="47.31" fx="47.31" r="50.98" xlink:href="#snoo-radial-gragient"></radialGradient><radialGradient id="snoo-radial-gragient-3" cx="109.61" cy="85.59" fx="109.61" fy="85.59" r="153.78" gradientTransform="translate(0 25.56) scale(1 .7)" xlink:href="#snoo-radial-gragient"></radialGradient><radialGradient id="snoo-radial-gragient-4" cx="-6.01" cy="64.68" fx="-6.01" fy="64.68" r="12.85" gradientTransform="translate(81.08 27.26) scale(1.07 1.55)" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#f60"></stop><stop offset=".5" stop-color="#ff4500"></stop><stop offset=".7" stop-color="#fc4301"></stop><stop offset=".82" stop-color="#f43f07"></stop><stop offset=".92" stop-color="#e53812"></stop><stop offset="1" stop-color="#d4301f"></stop></radialGradient><radialGradient id="snoo-radial-gragient-5" cx="-73.55" cy="64.68" fx="-73.55" fy="64.68" r="12.85" gradientTransform="translate(62.87 27.26) rotate(-180) scale(1.07 -1.55)" xlink:href="#snoo-radial-gragient-4"></radialGradient><radialGradient id="snoo-radial-gragient-6" cx="107.93" cy="166.96" fx="107.93" fy="166.96" r="45.3" gradientTransform="translate(0 57.4) scale(1 .66)" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#172e35"></stop><stop offset=".29" stop-color="#0e1c21"></stop><stop offset=".73" stop-color="#030708"></stop><stop offset="1" stop-color="#000"></stop></radialGradient><radialGradient id="snoo-radial-gragient-7" cx="147.88" cy="32.94" fx="147.88" fy="32.94" r="39.77" gradientTransform="translate(0 .54) scale(1 .98)" xlink:href="#snoo-radial-gragient"></radialGradient><radialGradient id="snoo-radial-gragient-8" cx="131.31" cy="73.08" fx="131.31" fy="73.08" r="32.6" gradientUnits="userSpaceOnUse"><stop offset=".48" stop-color="#7a9299"></stop><stop offset=".67" stop-color="#172e35"></stop><stop offset=".75" stop-color="#000"></stop><stop offset=".82" stop-color="#172e35"></stop></radialGradient></defs><path class="snoo-cls-10" d="m108,0h0C48.35,0,0,48.35,0,108h0c0,29.82,12.09,56.82,31.63,76.37l-20.57,20.57c-4.08,4.08-1.19,11.06,4.58,11.06h92.36s0,0,0,0c59.65,0,108-48.35,108-108h0C216,48.35,167.65,0,108,0Z"></path><circle class="snoo-cls-1" cx="169.22" cy="106.98" r="25.22"></circle><circle class="snoo-cls-2" cx="46.78" cy="106.98" r="25.22"></circle><ellipse class="snoo-cls-3" cx="108.06" cy="128.64" rx="72" ry="54"></ellipse><path class="snoo-cls-4" d="m86.78,123.48c-.42,9.08-6.49,12.38-13.56,12.38s-12.46-4.93-12.04-14.01c.42-9.08,6.49-15.02,13.56-15.02s12.46,7.58,12.04,16.66Z"></path><path class="snoo-cls-7" d="m129.35,123.48c.42,9.08,6.49,12.38,13.56,12.38s12.46-4.93,12.04-14.01c-.42-9.08-6.49-15.02-13.56-15.02s-12.46,7.58-12.04,16.66Z"></path><ellipse class="snoo-cls-11" cx="79.63" cy="116.37" rx="2.8" ry="3.05"></ellipse><ellipse class="snoo-cls-11" cx="146.21" cy="116.37" rx="2.8" ry="3.05"></ellipse><path class="snoo-cls-5" d="m108.06,142.92c-8.76,0-17.16.43-24.92,1.22-1.33.13-2.17,1.51-1.65,2.74,4.35,10.39,14.61,17.69,26.57,17.69s22.23-7.3,26.57-17.69c.52-1.23-.33-2.61-1.65-2.74-7.77-.79-16.16-1.22-24.92-1.22Z"></path><circle class="snoo-cls-8" cx="147.49" cy="49.43" r="17.87"></circle><path class="snoo-cls-6" d="m107.8,76.92c-2.14,0-3.87-.89-3.87-2.27,0-16.01,13.03-29.04,29.04-29.04,2.14,0,3.87,1.73,3.87,3.87s-1.73,3.87-3.87,3.87c-11.74,0-21.29,9.55-21.29,21.29,0,1.38-1.73,2.27-3.87,2.27Z"></path><path class="snoo-cls-9" d="m62.82,122.65c.39-8.56,6.08-14.16,12.69-14.16,6.26,0,11.1,6.39,11.28,14.33.17-8.88-5.13-15.99-12.05-15.99s-13.14,6.05-13.56,15.2c-.42,9.15,4.97,13.83,12.04,13.83.17,0,.35,0,.52,0-6.44-.16-11.3-4.79-10.91-13.2Z"></path><path class="snoo-cls-9" d="m153.3,122.65c-.39-8.56-6.08-14.16-12.69-14.16-6.26,0-11.1,6.39-11.28,14.33-.17-8.88,5.13-15.99,12.05-15.99,7.07,0,13.14,6.05,13.56,15.2.42,9.15-4.97,13.83-12.04,13.83-.17,0-.35,0-.52,0,6.44-.16,11.3-4.79,10.91-13.2Z"></path></svg><svg class="inline-block h-[22px]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 514 149" fill="currentColor"><path d="m71.62,45.92l-12.01,28.56c-1.51-.76-5.11-1.61-8.51-1.61s-6.81.85-10.12,2.46c-6.53,3.31-11.35,9.93-11.35,19.48v52.3H-.26V45.35h29.04v14.28h.57c6.81-9.08,17.21-15.79,30.74-15.79,4.92,0,9.65.95,11.54,2.08Z"></path><path d="m65.84,96.52c0-29.41,20.15-52.68,50.32-52.68,27.33,0,46.91,19.96,46.91,48.05,0,4.92-.47,9.55-1.51,14h-68.48c3.12,10.69,12.39,19.01,26.29,19.01,7.66,0,18.54-2.74,24.4-7.28l9.27,22.32c-8.61,5.86-21.75,8.7-33.29,8.7-32.25,0-53.91-20.81-53.91-52.11Zm26.67-9.36h43.03c0-13.05-8.89-19.96-19.77-19.96-12.3,0-20.62,7.94-23.27,19.96Z"></path><path d="m419.53-.37c10.03,0,18.25,8.23,18.25,18.25s-8.23,18.25-18.25,18.25-18.25-8.23-18.25-18.25S409.51-.37,419.53-.37Zm14.94,147.49h-29.89V45.35h29.89v101.77Z"></path><path d="m246,1.47l-.09,53.53h-.57c-8.23-7.85-17.12-11.07-28.75-11.07-28.66,0-47.67,23.08-47.67,52.3s17.78,52.4,46.72,52.4c12.11,0,23.55-4.16,30.93-13.62h.85v12.11h28.47V1.47h-29.89Zm1.42,121.39h-.99l-6.67-6.93c-4.34,4.33-10.28,6.93-17.22,6.93-14.64,0-24.88-11.58-24.88-26.6s10.24-26.6,24.88-26.6,24.88,11.58,24.88,26.6v26.6Z"></path><path d="m360.15,1.47l-.09,53.53h-.57c-8.23-7.85-17.12-11.07-28.75-11.07-28.66,0-47.67,23.08-47.67,52.3s17.78,52.4,46.72,52.4c12.11,0,23.55-4.16,30.93-13.62h.85v12.11h28.47V1.47h-29.89Zm1.28,121.39h-.99l-6.67-6.93c-4.34,4.33-10.28,6.93-17.22,6.93-14.64,0-24.88-11.58-24.88-26.6s10.24-26.6,24.88-26.6,24.88,11.58,24.88,26.6v26.6Z"></path><path d="m492.44,45.35h21.85v25.44h-21.85v76.33h-29.89v-76.33h-21.75v-25.44h21.75v-27.66h29.89v27.66Z"></path></svg></a>
+        <a id="reddit-logo" class="space-x-1.5" href="/"><svg class="inline-block" width="32" height="32"
+                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 216 216" xml:space="preserve"
+                xmlns:xlink="http://www.w3.org/1999/xlink">
+                <defs>
+                    <style>
+                        .snoo-cls-1,
+                        .snoo-cls-2,
+                        .snoo-cls-3,
+                        .snoo-cls-4,
+                        .snoo-cls-5,
+                        .snoo-cls-6,
+                        .snoo-cls-7,
+                        .snoo-cls-8,
+                        .snoo-cls-9,
+                        .snoo-cls-10,
+                        .snoo-cls-11 {
+                            stroke-width: 0px;
+                        }
+
+                        .snoo-cls-1 {
+                            fill: url(#snoo-radial-gragient) white;
+                        }
+
+                        .snoo-cls-2 {
+                            fill: url(#snoo-radial-gragient-2) white;
+                        }
+
+                        .snoo-cls-3 {
+                            fill: url(#snoo-radial-gragient-3) white;
+                        }
+
+                        .snoo-cls-4 {
+                            fill: url(#snoo-radial-gragient-4) #fc4301;
+                        }
+
+                        .snoo-cls-5 {
+                            fill: url(#snoo-radial-gragient-6) black;
+                        }
+
+                        .snoo-cls-6 {
+                            fill: url(#snoo-radial-gragient-8) black;
+                        }
+
+                        .snoo-cls-7 {
+                            fill: url(#snoo-radial-gragient-5) #fc4301;
+                        }
+
+                        .snoo-cls-8 {
+                            fill: url(#snoo-radial-gragient-7) white;
+                        }
+
+                        .snoo-cls-9 {
+                            fill: #842123;
+                        }
+
+                        .snoo-cls-10 {
+                            fill: #ff4500;
+                        }
+
+                        .snoo-cls-11 {
+                            fill: #ffc49c;
+                        }
+                    </style>
+                    <radialGradient id="snoo-radial-gragient" cx="169.75" cy="92.19" fx="169.75" fy="92.19" r="50.98"
+                        gradientTransform="translate(0 11.64) scale(1 .87)" gradientUnits="userSpaceOnUse">
+                        <stop offset="0" stop-color="#feffff"></stop>
+                        <stop offset=".4" stop-color="#feffff"></stop>
+                        <stop offset=".51" stop-color="#f9fcfc"></stop>
+                        <stop offset=".62" stop-color="#edf3f5"></stop>
+                        <stop offset=".7" stop-color="#dee9ec"></stop>
+                        <stop offset=".72" stop-color="#d8e4e8"></stop>
+                        <stop offset=".76" stop-color="#ccd8df"></stop>
+                        <stop offset=".8" stop-color="#c8d5dd"></stop>
+                        <stop offset=".83" stop-color="#ccd6de"></stop>
+                        <stop offset=".85" stop-color="#d8dbe2"></stop>
+                        <stop offset=".88" stop-color="#ede3e9"></stop>
+                        <stop offset=".9" stop-color="#ffebef"></stop>
+                    </radialGradient>
+                    <radialGradient id="snoo-radial-gragient-2" cx="47.31" fx="47.31" r="50.98"
+                        xlink:href="#snoo-radial-gragient"></radialGradient>
+                    <radialGradient id="snoo-radial-gragient-3" cx="109.61" cy="85.59" fx="109.61" fy="85.59" r="153.78"
+                        gradientTransform="translate(0 25.56) scale(1 .7)" xlink:href="#snoo-radial-gragient">
+                    </radialGradient>
+                    <radialGradient id="snoo-radial-gragient-4" cx="-6.01" cy="64.68" fx="-6.01" fy="64.68" r="12.85"
+                        gradientTransform="translate(81.08 27.26) scale(1.07 1.55)" gradientUnits="userSpaceOnUse">
+                        <stop offset="0" stop-color="#f60"></stop>
+                        <stop offset=".5" stop-color="#ff4500"></stop>
+                        <stop offset=".7" stop-color="#fc4301"></stop>
+                        <stop offset=".82" stop-color="#f43f07"></stop>
+                        <stop offset=".92" stop-color="#e53812"></stop>
+                        <stop offset="1" stop-color="#d4301f"></stop>
+                    </radialGradient>
+                    <radialGradient id="snoo-radial-gragient-5" cx="-73.55" cy="64.68" fx="-73.55" fy="64.68" r="12.85"
+                        gradientTransform="translate(62.87 27.26) rotate(-180) scale(1.07 -1.55)"
+                        xlink:href="#snoo-radial-gragient-4"></radialGradient>
+                    <radialGradient id="snoo-radial-gragient-6" cx="107.93" cy="166.96" fx="107.93" fy="166.96" r="45.3"
+                        gradientTransform="translate(0 57.4) scale(1 .66)" gradientUnits="userSpaceOnUse">
+                        <stop offset="0" stop-color="#172e35"></stop>
+                        <stop offset=".29" stop-color="#0e1c21"></stop>
+                        <stop offset=".73" stop-color="#030708"></stop>
+                        <stop offset="1" stop-color="#000"></stop>
+                    </radialGradient>
+                    <radialGradient id="snoo-radial-gragient-7" cx="147.88" cy="32.94" fx="147.88" fy="32.94" r="39.77"
+                        gradientTransform="translate(0 .54) scale(1 .98)" xlink:href="#snoo-radial-gragient">
+                    </radialGradient>
+                    <radialGradient id="snoo-radial-gragient-8" cx="131.31" cy="73.08" fx="131.31" fy="73.08" r="32.6"
+                        gradientUnits="userSpaceOnUse">
+                        <stop offset=".48" stop-color="#7a9299"></stop>
+                        <stop offset=".67" stop-color="#172e35"></stop>
+                        <stop offset=".75" stop-color="#000"></stop>
+                        <stop offset=".82" stop-color="#172e35"></stop>
+                    </radialGradient>
+                </defs>
+                <path class="snoo-cls-10"
+                    d="m108,0h0C48.35,0,0,48.35,0,108h0c0,29.82,12.09,56.82,31.63,76.37l-20.57,20.57c-4.08,4.08-1.19,11.06,4.58,11.06h92.36s0,0,0,0c59.65,0,108-48.35,108-108h0C216,48.35,167.65,0,108,0Z">
+                </path>
+                <circle class="snoo-cls-1" cx="169.22" cy="106.98" r="25.22"></circle>
+                <circle class="snoo-cls-2" cx="46.78" cy="106.98" r="25.22"></circle>
+                <ellipse class="snoo-cls-3" cx="108.06" cy="128.64" rx="72" ry="54"></ellipse>
+                <path class="snoo-cls-4"
+                    d="m86.78,123.48c-.42,9.08-6.49,12.38-13.56,12.38s-12.46-4.93-12.04-14.01c.42-9.08,6.49-15.02,13.56-15.02s12.46,7.58,12.04,16.66Z">
+                </path>
+                <path class="snoo-cls-7"
+                    d="m129.35,123.48c.42,9.08,6.49,12.38,13.56,12.38s12.46-4.93,12.04-14.01c-.42-9.08-6.49-15.02-13.56-15.02s-12.46,7.58-12.04,16.66Z">
+                </path>
+                <ellipse class="snoo-cls-11" cx="79.63" cy="116.37" rx="2.8" ry="3.05"></ellipse>
+                <ellipse class="snoo-cls-11" cx="146.21" cy="116.37" rx="2.8" ry="3.05"></ellipse>
+                <path class="snoo-cls-5"
+                    d="m108.06,142.92c-8.76,0-17.16.43-24.92,1.22-1.33.13-2.17,1.51-1.65,2.74,4.35,10.39,14.61,17.69,26.57,17.69s22.23-7.3,26.57-17.69c.52-1.23-.33-2.61-1.65-2.74-7.77-.79-16.16-1.22-24.92-1.22Z">
+                </path>
+                <circle class="snoo-cls-8" cx="147.49" cy="49.43" r="17.87"></circle>
+                <path class="snoo-cls-6"
+                    d="m107.8,76.92c-2.14,0-3.87-.89-3.87-2.27,0-16.01,13.03-29.04,29.04-29.04,2.14,0,3.87,1.73,3.87,3.87s-1.73,3.87-3.87,3.87c-11.74,0-21.29,9.55-21.29,21.29,0,1.38-1.73,2.27-3.87,2.27Z">
+                </path>
+                <path class="snoo-cls-9"
+                    d="m62.82,122.65c.39-8.56,6.08-14.16,12.69-14.16,6.26,0,11.1,6.39,11.28,14.33.17-8.88-5.13-15.99-12.05-15.99s-13.14,6.05-13.56,15.2c-.42,9.15,4.97,13.83,12.04,13.83.17,0,.35,0,.52,0-6.44-.16-11.3-4.79-10.91-13.2Z">
+                </path>
+                <path class="snoo-cls-9"
+                    d="m153.3,122.65c-.39-8.56-6.08-14.16-12.69-14.16-6.26,0-11.1,6.39-11.28,14.33-.17-8.88,5.13-15.99,12.05-15.99,7.07,0,13.14,6.05,13.56,15.2.42,9.15-4.97,13.83-12.04,13.83-.17,0-.35,0-.52,0,6.44-.16,11.3-4.79,10.91-13.2Z">
+                </path>
+            </svg><svg class="inline-block h-[22px]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 514 149"
+                fill="currentColor">
+                <path
+                    d="m71.62,45.92l-12.01,28.56c-1.51-.76-5.11-1.61-8.51-1.61s-6.81.85-10.12,2.46c-6.53,3.31-11.35,9.93-11.35,19.48v52.3H-.26V45.35h29.04v14.28h.57c6.81-9.08,17.21-15.79,30.74-15.79,4.92,0,9.65.95,11.54,2.08Z">
+                </path>
+                <path
+                    d="m65.84,96.52c0-29.41,20.15-52.68,50.32-52.68,27.33,0,46.91,19.96,46.91,48.05,0,4.92-.47,9.55-1.51,14h-68.48c3.12,10.69,12.39,19.01,26.29,19.01,7.66,0,18.54-2.74,24.4-7.28l9.27,22.32c-8.61,5.86-21.75,8.7-33.29,8.7-32.25,0-53.91-20.81-53.91-52.11Zm26.67-9.36h43.03c0-13.05-8.89-19.96-19.77-19.96-12.3,0-20.62,7.94-23.27,19.96Z">
+                </path>
+                <path
+                    d="m419.53-.37c10.03,0,18.25,8.23,18.25,18.25s-8.23,18.25-18.25,18.25-18.25-8.23-18.25-18.25S409.51-.37,419.53-.37Zm14.94,147.49h-29.89V45.35h29.89v101.77Z">
+                </path>
+                <path
+                    d="m246,1.47l-.09,53.53h-.57c-8.23-7.85-17.12-11.07-28.75-11.07-28.66,0-47.67,23.08-47.67,52.3s17.78,52.4,46.72,52.4c12.11,0,23.55-4.16,30.93-13.62h.85v12.11h28.47V1.47h-29.89Zm1.42,121.39h-.99l-6.67-6.93c-4.34,4.33-10.28,6.93-17.22,6.93-14.64,0-24.88-11.58-24.88-26.6s10.24-26.6,24.88-26.6,24.88,11.58,24.88,26.6v26.6Z">
+                </path>
+                <path
+                    d="m360.15,1.47l-.09,53.53h-.57c-8.23-7.85-17.12-11.07-28.75-11.07-28.66,0-47.67,23.08-47.67,52.3s17.78,52.4,46.72,52.4c12.11,0,23.55-4.16,30.93-13.62h.85v12.11h28.47V1.47h-29.89Zm1.28,121.39h-.99l-6.67-6.93c-4.34,4.33-10.28,6.93-17.22,6.93-14.64,0-24.88-11.58-24.88-26.6s10.24-26.6,24.88-26.6,24.88,11.58,24.88,26.6v26.6Z">
+                </path>
+                <path d="m492.44,45.35h21.85v25.44h-21.85v76.33h-29.89v-76.33h-21.75v-25.44h21.75v-27.66h29.89v27.66Z">
+                </path>
+            </svg></a>
     </header>
     <div class="flex items-stretch flex-auto min-h-0 basis-0">
         <!-- Side bar -->
@@ -22,20 +190,83 @@
         </aside>
         <!-- Main -->
         <main class="p-4 overflow-y-auto grow">
-            <img class="" src="/homePagePost.png" alt="">
 
-            <div>
-                <div class="flex items-center gap-2 text-white">
-                    <img class="w-10 h-auto rounded-full" src="/icon.jpg" alt="">
-                    <a href="">r/politics</a>
-                    <time datetime="">6 hr. ago</time>
-                    <div>
-                        <button>join</button>
-                        <p>three dots</p>
+            <section class="space-y-4 max-w-3xl">
+                <div>
+                    <hr class="pb-3">
+                    <div class="flex items-center gap-2 mb-3">
+                        <img class="w-9 h-auto rounded-full" src="/icon.jpg" alt="">
+                        <a href="">r/politics</a>
+                        <time class="text-gray-400" datetime="">6 hr. ago</time>
+                        <button class="py-1 px-4 rounded-4xl bg-blue-800 text-white ml-auto">join</button>
+                        <svg class="w-7" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"
+                            fill="currentColor">
+                            <path
+                                d="M240-400q-33 0-56.5-23.5T160-480q0-33 23.5-56.5T240-560q33 0 56.5 23.5T320-480q0 33-23.5 56.5T240-400Zm240 0q-33 0-56.5-23.5T400-480q0-33 23.5-56.5T480-560q33 0 56.5 23.5T560-480q0 33-23.5 56.5T480-400Zm240 0q-33 0-56.5-23.5T640-480q0-33 23.5-56.5T720-560q33 0 56.5 23.5T800-480q0 33-23.5 56.5T720-400Z" />
+                        </svg>
                     </div>
+
+                    <div class="flex gap-2 flex-grow-0">
+                        <p class="font-bold">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt laudantium nam
+                            reprehenderit
+                            recusandae pariatur, distinctio tempore soluta ipsam quod quidem debitis quaerat at maxime
+                            esse
+                            vel quia itaque facilis illo?
+                        </p>
+                        <img class="flex-none w-40 h-30 rounded-2xl object-cover" src="/obama.jpg" alt="">
+                    </div>
+
+                    <div class="flex gap-5 items-center h-10">
+                        <div class="flex items-center gap-1 bg-gray-200 h-[100%] rounded-3xl px-3 py-1">
+                            <svg class="w-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"
+                                fill="currentColor">
+                                <path d="M440-160v-487L216-423l-56-57 320-320 320 320-56 57-224-224v487h-80Z" />
+                            </svg>
+                            <p>43k</p>
+                            <svg class="w-6 cursor-pointer" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"
+                                fill="currentColor">
+                                <path d="M440-800v487L216-537l-56 57 320 320 320-320-56-57-224 224v-487h-80Z" />
+                            </svg>
+                        </div>
+
+                        <div class="flex items-center gap-1 bg-gray-200 h-[100%] rounded-3xl px-3 py-1">
+                            <svg class="h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"
+                                fill="currentColor">
+                                <path
+                                    d="M80-80v-720q0-33 23.5-56.5T160-880h640q33 0 56.5 23.5T880-800v480q0 33-23.5 56.5T800-240H240L80-80Zm126-240h594v-480H160v525l46-45Zm-46 0v-480 480Z" />
+                            </svg>
+                            <p>1.1k</p>
+                        </div>
+
+                        <div class="flex items-center gap-1 bg-gray-200 h-[100%] rounded-3xl px-3 py-1">
+                            <svg class="h-7" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M5 8.999c0 1.902.765 3.627 2 4.89V21a.998.998 0 0 0 1.447.895L12 20.118l3.553 1.776a.992.992 0 0 0 .972-.043c.295-.183.475-.504.475-.851v-7.11a6.976 6.976 0 0 0 2-4.891C19 5.14 15.86 2 12 2S5 5.14 5 8.999zm7.447 9.106a1 1 0 0 0-.895 0L9 19.382v-4.067c.911.434 1.926.685 3 .685s2.089-.25 3-.685v4.066l-2.553-1.276zM12 4c2.756 0 5 2.242 5 4.999A5.006 5.006 0 0 1 12 14c-2.757 0-5-2.243-5-5.001A5.005 5.005 0 0 1 12 4z">
+                                </path>
+                            </svg>
+                        </div>
+
+                        <div class="flex items-center gap-1 bg-gray-200 h-[100%] rounded-3xl px-3 py-1">
+                            <svg class="h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M11 7.05V4a1 1 0 0 0-1-1 1 1 0 0 0-.7.29l-7 7a1 1 0 0 0 0 1.42l7 7A1 1 0 0 0 11 18v-3.1h.85a10.89 10.89 0 0 1 8.36 3.72 1 1 0 0 0 1.11.35A1 1 0 0 0 22 18c0-9.12-8.08-10.68-11-10.95zm.85 5.83a14.74 14.74 0 0 0-2 .13A1 1 0 0 0 9 14v1.59L4.42 11 9 6.41V8a1 1 0 0 0 1 1c.91 0 8.11.2 9.67 6.43a13.07 13.07 0 0 0-7.82-2.55z">
+                                </path>
+                            </svg>
+                            <p>Share</p>
+                        </div>
+
+                    </div>
+
+
                 </div>
-            </div>
+
+
+            </section>
+
+
         </main>
     </div>
 </body>
+
 </html>
