@@ -1,5 +1,7 @@
 let lastPost: string | undefined;
 const posts = document.getElementById("posts")!;
+const numFormat = new Intl.NumberFormat(undefined, { notation: "compact" });
+const dateFormat = new Intl.RelativeTimeFormat(undefined, { numeric: "auto" });
 
 async function fetchRedditPosts() {
     const url = `https://www.reddit.com/.json?limit=10${lastPost ? `&after=${lastPost}` : ""}`;
@@ -18,7 +20,22 @@ async function fetchRedditPosts() {
     return posts;
 }
 
-function createPost() {
+function timeAgo(date: Date) {
+    const now = new Date();
+    const diffMs = now.getTime() - date.getTime();
+    const diffSec = Math.floor(diffMs / 1000);
+    const diffMin = Math.floor(diffSec / 60);
+    const diffHr = Math.floor(diffMin / 60);
+    const diffDay = Math.floor(diffHr / 24);
+
+    if (diffSec < 60) return dateFormat.format(-diffSec, "second");
+    if (diffMin < 60) return dateFormat.format(-diffMin, "minute");
+    if (diffHr < 24) return dateFormat.format(-diffHr, "hour");
+
+    return dateFormat.format(-diffDay, "day");
+}
+
+function createPost(postData: any) {
     const post = document.createElement("section");
     post.className = "post";
 
@@ -31,12 +48,13 @@ function createPost() {
 
     const headerSubreddit = document.createElement("a");
     headerSubreddit.href = "";
-    headerSubreddit.innerText = "r/politics";
+    headerSubreddit.innerText = postData.subreddit_name_prefixed;
 
+    const createdDate = new Date(postData.created * 1000);
     const headerTime = document.createElement("time");
     headerTime.className = "post__header__time";
-    headerTime.dateTime = "";
-    headerTime.innerText = "6 hr. ago";
+    headerTime.dateTime = createdDate.toISOString();
+    headerTime.innerText = timeAgo(createdDate);
 
     const headerJoinButton = document.createElement("button");
     headerJoinButton.className = "post__header__button";
@@ -56,11 +74,11 @@ function createPost() {
 
     const contentParagraph = document.createElement("p");
     contentParagraph.className = "post__content__p";
-    contentParagraph.innerText = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt laudantium nam reprehenderit recusandae pariatur, distinctio tempore soluta ipsam quod quidem debitis quaerat at maxime esse vel quia itaque facilis illo?";
+    contentParagraph.innerText = postData.title;
 
     const contentImage = document.createElement("img");
     contentImage.className = "post__content__img";
-    contentImage.src = "/obama.jpg";
+    contentImage.src = postData.thumbnail;
 
     content.append(contentParagraph, contentImage);
 
@@ -78,7 +96,7 @@ function createPost() {
     footerVoteUp.innerHTML = '<path d="M10 19c-.072 0-.145 0-.218-.006A4.1 4.1 0 0 1 6 14.816V11H2.862a1.751 1.751 0 0 1-1.234-2.993L9.41.28a.836.836 0 0 1 1.18 0l7.782 7.727A1.751 1.751 0 0 1 17.139 11H14v3.882a4.134 4.134 0 0 1-.854 2.592A3.99 3.99 0 0 1 10 19Zm0-17.193L2.685 9.071a.251.251 0 0 0 .177.429H7.5v5.316A2.63 2.63 0 0 0 9.864 17.5a2.441 2.441 0 0 0 1.856-.682A2.478 2.478 0 0 0 12.5 15V9.5h4.639a.25.25 0 0 0 .176-.429L10 1.807Z"></path>';
 
     const footerVoteCount = document.createElement("p");
-    footerVoteCount.innerText = "43k";
+    footerVoteCount.innerText = numFormat.format(postData.ups);
 
     const footerVoteDown = document.createElementNS("http://www.w3.org/2000/svg", "svg");
     footerVoteDown.style.width = "1.25rem";
@@ -100,7 +118,7 @@ function createPost() {
     footerCommentImage.innerHTML = '<path d="M80-80v-720q0-33 23.5-56.5T160-880h640q33 0 56.5 23.5T880-800v480q0 33-23.5 56.5T800-240H240L80-80Zm126-240h594v-480H160v525l46-45Zm-46 0v-480 480Z"></path>';
 
     const footerCommentCount = document.createElement("p");
-    footerCommentCount.innerText = "1.1k";
+    footerCommentCount.innerText = numFormat.format(postData.num_comments);
 
     footerComment.append(footerCommentImage, footerCommentCount);
 
@@ -133,8 +151,20 @@ function createPost() {
     footer.append(footerVote, footerComment, footerLeaderboard, footerShare);
     post.append(header, content, footer);
     posts.appendChild(post);
-
-
 }
 
-createPost();
+async function addNewPostsToDocument() {
+    const posts = await fetchRedditPosts();
+    for (const post of posts) {
+        createPost(post.data);
+    }
+}
+
+posts.addEventListener("scroll", () => {
+    const reachedEnd = Math.abs(posts.scrollHeight - posts.clientHeight - posts.scrollTop) <= 1;
+    if (reachedEnd) {
+        addNewPostsToDocument();
+    }
+});
+
+addNewPostsToDocument();
