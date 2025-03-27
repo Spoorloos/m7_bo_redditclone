@@ -1,13 +1,45 @@
 @import "tailwindcss";
 
-:root {
-    color-scheme: light dark;
+.post {
+    @apply space-y-4 max-w-3xl py-4;
 }
 
-@theme {
-    --color-text: light-dark(#000000, #FFFFFF);
-    --color-background: light-dark(#FFFFFF, #0E1113);
-    --color-border: light-dark(#CCCCCC, #3E4142);
-    --color-btn-hover: light-dark(#DBE4E9, #333D42);
-    --color-btn-active: light-dark(#BAC2C6, #515A5E);
+.post__header {
+    @apply flex items-center gap-2 mb-3;
+}
+
+.post__header__img {
+    @apply w-9 h-auto rounded-full;
+}
+
+.post__header__time {
+    @apply text-gray-400;
+}
+
+.post__header__button {
+    @apply py-1 px-4 rounded-4xl bg-blue-800 text-white ml-auto cursor-pointer hover:bg-blue-700;
+}
+
+.post__header__dots {
+    @apply size-8 p-1 cursor-pointer hover:bg-black/10 dark:hover:bg-white/10 rounded-full;
+}
+
+.post__content {
+    @apply flex gap-2 flex-grow-0;
+}
+
+.post__content__p {
+    @apply font-bold mb-3;
+}
+
+.post__content__img {
+    @apply flex-none w-40 h-30 rounded-2xl object-cover;
+}
+
+.post__footer {
+    @apply flex gap-5 items-center h-10;
+}
+
+.post__footer__button {
+    @apply flex items-center gap-1 bg-gray-200 hover:bg-gray-100 dark:bg-gray-800 dark:hover:bg-gray-700 h-full rounded-3xl px-3 py-1 cursor-pointer;
 }
