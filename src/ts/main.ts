@@ -3,6 +3,29 @@ const posts = document.getElementById("posts")!;
 const numFormat = new Intl.NumberFormat(undefined, { notation: "compact" });
 const dateFormat = new Intl.RelativeTimeFormat(undefined, { numeric: "auto" });
 
+
+async function getSubredditIcon(subredditName: any) {
+    const url = `https://www.reddit.com/r/${subredditName}/about.json`;
+
+    try {
+        const response = await fetch(url);
+        const data = await response.json();
+
+        // Access the subreddit icon URL
+        const subredditIconUrl = data.data.icon_img;
+
+        console.log("Subreddit Icon URL:", subredditIconUrl);
+        return subredditIconUrl
+    } catch (error) {
+        console.error("Error fetching subreddit data:", error);
+    }
+}
+
+
+// getSubredditIcon("oddlysatisfying");
+
+
+
 async function fetchRedditPosts() {
     const url = `https://www.reddit.com/.json?limit=10${lastPost ? `&after=${lastPost}` : ""}`;
     const response = await fetch(url);
@@ -10,7 +33,10 @@ async function fetchRedditPosts() {
         throw new Error("API request failed");
     }
 
+
     const data = await response.json();
+    // console.log(data.data.children)
+
     const posts: any[] | undefined = data?.data?.children;
     if (!posts || posts.length === 0) {
         throw new Error("API didn't return posts");
@@ -35,8 +61,9 @@ function timeAgo(date: Date) {
     return dateFormat.format(-diffDay, "day");
 }
 
-function createPost(postData: any) {
+async function createPost(postData: any) {
     const post = document.createElement("section");
+    console.log(postData)
     post.className = "post";
 
     const header = document.createElement("div");
@@ -44,7 +71,7 @@ function createPost(postData: any) {
 
     const headerImage = document.createElement("img");
     headerImage.className = "post__header__img";
-    headerImage.src = "/icon.jpg";
+    headerImage.src = String(await getSubredditIcon(postData.subreddit));
 
     const headerSubreddit = document.createElement("a");
     headerSubreddit.href = "";
