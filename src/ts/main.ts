@@ -1,16 +1,10 @@
 let lastPost: string | undefined;
-const posts = document.getElementById("posts")!;
+
+const postsEnd = document.getElementById("posts__end")!;
+
 const numFormat = new Intl.NumberFormat(undefined, { notation: "compact" });
 const dateFormat = new Intl.RelativeTimeFormat(undefined, { numeric: "auto" });
-const units = [
-    [ "year", 31536000 ],
-    [ "month", 2592000 ],
-    [ "week", 604800 ],
-    [ "day", 86400 ],
-    [ "hour", 3600 ],
-    [ "minute", 60 ],
-    [ "second", 1 ],
-] as const;
+const units = [ [ "year", 31536000 ], [ "month", 2592000 ], [ "week", 604800 ], [ "day", 86400 ], [ "hour", 3600 ], [ "minute", 60 ], [ "second", 1 ] ] as const;
 
 async function getSubredditIcon(subredditName: string) {
     const url = `https://www.reddit.com/r/${subredditName}/about.json`;
@@ -72,7 +66,7 @@ async function createPost(postData: any) {
     const upvotes = postData?.ups ?? 0;
     const numComments = postData?.num_comments ?? 0;
 
-    posts.insertAdjacentHTML("beforeend", /*html*/`
+    postsEnd.insertAdjacentHTML("beforebegin", /*html*/`
         <section class="space-y-4 w-full max-w-3xl py-4">
             <div class="flex items-center gap-2 mb-3">
                 <img class="w-9 h-auto rounded-full" src="${await getSubredditIcon(subreddit)}"/>
@@ -116,11 +110,21 @@ async function addNewPostsToDocument() {
     }));
 }
 
-posts.addEventListener("scroll", () => {
-    const reachedEnd = Math.abs(posts.scrollHeight - posts.clientHeight - posts.scrollTop) <= 1;
-    if (reachedEnd) {
+const observer = new IntersectionObserver((entries) => {
+    console.log(entries);
+    if (entries[0].isIntersecting) {
         addNewPostsToDocument();
     }
 });
 
-addNewPostsToDocument();
+observer.observe(postsEnd);
+
+// Better approach:
+// posts.addEventListener("scroll", () => {
+//     const reachedEnd = Math.abs(posts.scrollHeight - posts.clientHeight - posts.scrollTop) <= 1;
+//     if (reachedEnd) {
+//         addNewPostsToDocument();
+//     }
+// });
+
+// addNewPostsToDocument();

@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="global.css">
     <script type="module" src="ts/header.ts" defer></script>
     <script type="module" src="ts/main.ts" defer></script>
+    <link rel="icon" href="data:image/png;base64,=">
 </head>
 <body class="flex flex-col h-screen text-black dark:text-white bg-white dark:bg-[#0E1113]">
     <!-- Header -->
@@ -22,7 +23,9 @@
             <div class="w-64 h-16 bg-blue-500"></div>
         </aside>
         <!-- Main -->
-        <main id="posts" class="p-4 overflow-y-auto grow flex flex-col items-center divide-y divide-[#CCCCCC] dark:divide-[#3E4142]"></main>
+        <main class="p-4 overflow-y-auto grow flex flex-col items-center divide-y divide-[#CCCCCC] dark:divide-[#3E4142]">
+            <div id="posts__end">Fetching posts...</div>
+        </main>
     </div>
 </body>
 </html>
