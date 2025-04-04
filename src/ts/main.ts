@@ -111,20 +111,9 @@ async function addNewPostsToDocument() {
 }
 
 const observer = new IntersectionObserver((entries) => {
-    console.log(entries);
     if (entries[0].isIntersecting) {
         addNewPostsToDocument();
     }
 });
 
 observer.observe(postsEnd);
-
-// Better approach:
-// posts.addEventListener("scroll", () => {
-//     const reachedEnd = Math.abs(posts.scrollHeight - posts.clientHeight - posts.scrollTop) <= 1;
-//     if (reachedEnd) {
-//         addNewPostsToDocument();
-//     }
-// });
-
-// addNewPostsToDocument();
