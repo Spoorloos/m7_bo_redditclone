@@ -1,10 +1,8 @@
+import { format } from "timeago.js";
+
 let lastPost: string | undefined;
-
 const postsEnd = document.getElementById("posts__end")!;
-
 const numFormat = new Intl.NumberFormat(undefined, { notation: "compact" });
-const dateFormat = new Intl.RelativeTimeFormat(undefined, { numeric: "auto" });
-const units = [ [ "year", 31536000 ], [ "month", 2592000 ], [ "week", 604800 ], [ "day", 86400 ], [ "hour", 3600 ], [ "minute", 60 ], [ "second", 1 ] ] as const;
 
 async function getSubredditIcon(subredditName: string) {
     const url = `https://www.reddit.com/r/${subredditName}/about.json`;
@@ -45,18 +43,6 @@ async function fetchRedditPosts() {
     return [];
 }
 
-function timeAgo(ms: number) {
-    const seconds = (ms - Date.now()) / 1000;
-
-    for (const [ unit, value ] of units) {
-        if (Math.abs(seconds) >= value) {
-            return dateFormat.format(Math.round(seconds / value), unit as Intl.RelativeTimeFormatUnit);
-        }
-    }
-
-    return "Just now";
-}
-
 async function createPost(postData: any) {
     const subreddit = postData?.subreddit ?? "";
     const created = postData?.created ?? 0;
@@ -71,7 +57,7 @@ async function createPost(postData: any) {
             <div class="flex items-center gap-2 mb-3">
                 <img class="w-9 h-auto rounded-full" src="${await getSubredditIcon(subreddit)}"/>
                 <a href="${`https://www.reddit.com/r/${subreddit}`}">${`r/${subreddit}`}</a>
-                <p class="text-gray-400">${timeAgo(created * 1000)}</p>
+                <time class="text-gray-400">${format(created * 1000)}</time>
                 <button class="py-1 px-4 rounded-4xl bg-blue-800 text-white ml-auto cursor-pointer hover:bg-blue-700">Join</button>
                 <svg class="size-8 p-1 cursor-pointer hover:bg-black/10 dark:hover:bg-white/10 rounded-full" viewBox="0 -960 960 960" fill="currentColor"><path d="M240-400q-33 0-56.5-23.5T160-480q0-33 23.5-56.5T240-560q33 0 56.5 23.5T320-480q0 33-23.5 56.5T240-400Zm240 0q-33 0-56.5-23.5T400-480q0-33 23.5-56.5T480-560q33 0 56.5 23.5T560-480q0 33-23.5 56.5T480-400Zm240 0q-33 0-56.5-23.5T640-480q0-33 23.5-56.5T720-560q33 0 56.5 23.5T800-480q0 33-23.5 56.5T720-400Z"></path></svg>
             </div>

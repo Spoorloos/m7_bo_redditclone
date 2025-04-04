@@ -14,6 +14,9 @@ importers:
       tailwindcss:
         specifier: ^4.1.2
         version: 4.1.2
+      timeago.js:
+        specifier: ^4.0.2
+        version: 4.0.2
     devDependencies:
       typescript:
         specifier: ~5.7.3
@@ -472,6 +475,9 @@ packages:
     resolution: {integrity: sha512-GNzQvQTOIP6RyTfE2Qxb8ZVlNmw0n88vp1szwWRimP02mnTsx3Wtn5qRdqY9w2XduFNUgvOwhNnQsjwCp+kqaQ==}
     engines: {node: '>=6'}
 
+  timeago.js@4.0.2:
+    resolution: {integrity: sha512-a7wPxPdVlQL7lqvitHGGRsofhdwtkoSXPGATFuSOA2i1ZNQEPLrGnj68vOp2sOJTCFAQVXPeNMX/GctBaO9L2w==}
+
   typescript@5.7.3:
     resolution: {integrity: sha512-84MVSjMEHP+FQRPy3pX9sTVV/INIex71s9TL2Gm5FG/WG1SqXeKyZ0k7/blY/4FdOzI12CBy1vGc4og/eus0fw==}
     engines: {node: '>=14.17'}
@@ -845,6 +851,8 @@ snapshots:
   tailwindcss@4.1.2: {}
 
   tapable@2.2.1: {}
+
+  timeago.js@4.0.2: {}
 
   typescript@5.7.3: {}
 
