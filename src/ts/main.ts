@@ -88,17 +88,13 @@ async function createPost(postData: any) {
     `);
 }
 
-async function addNewPostsToDocument() {
-    const posts = await fetchRedditPosts();
-
-    await Promise.all(posts.map((post) => {
-        return createPost(post.data);
-    }));
-}
-
-const observer = new IntersectionObserver((entries) => {
+const observer = new IntersectionObserver(async (entries) => {
     if (entries[0].isIntersecting) {
-        addNewPostsToDocument();
+        const posts = await fetchRedditPosts();
+
+        for (const post of posts) {
+            createPost(post.data);
+        }
     }
 });
 
